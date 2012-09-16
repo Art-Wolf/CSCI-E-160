@@ -1,0 +1,44 @@
+<project name="HW1" basedir="." default="main">
+
+    <property name="src.dir"     value="src"/>
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="doc.dir"     value="api"/>
+
+    <target name="clean" description="Delete build and doc directories">
+        <delete dir="${build.dir}"/>
+        <delete dir="${doc.dir}"/>
+    </target>
+
+    <target name="compile" description="Create a classes directory and compile the java into it.">
+	<mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false"/>
+    </target>
+
+    <target name="jar" depends="compile" description="Generate jar file.">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <fileset dir="${src.dir}" includes="**/*.java"/>
+            <fileset dir="${doc.dir}" />
+	    <fileset dir="." includes="*.txt" />
+            <fileset dir="." includes="*.xml" />
+            <manifest>
+                <attribute name="Main-Class" value="cscie160.tw1.ElevatorTest"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="doc" depends="compile" description="Generate javadoc.">
+       <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+    </target>
+
+    <target name="run" depends="jar">
+        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+    </target>
+
+    <target name="clean-build" depends="clean,jar"/>
+
+    <target name="main" depends="clean,compile,doc,jar,run"/>
+
+</project>

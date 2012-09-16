@@ -1,0 +1,38 @@
+Buildfile: /Users/johndoyle/Documents/CSCI-E-160/build.xml
+
+clean:
+   [delete] Deleting directory /Users/johndoyle/Documents/CSCI-E-160/build
+   [delete] Deleting directory /Users/johndoyle/Documents/CSCI-E-160/api
+
+compile:
+    [mkdir] Created dir: /Users/johndoyle/Documents/CSCI-E-160/build/classes
+    [javac] Compiling 2 source files to /Users/johndoyle/Documents/CSCI-E-160/build/classes
+
+doc:
+  [javadoc] Generating Javadoc
+  [javadoc] Javadoc execution
+  [javadoc] Creating destination directory: "/Users/johndoyle/Documents/CSCI-E-160/api/"
+  [javadoc] Loading source files for package cscie160.hw1...
+  [javadoc] Loading source files for package cscie160.tw1...
+  [javadoc] Constructing Javadoc information...
+  [javadoc] Standard Doclet version 1.6.0_35
+  [javadoc] Building tree for all the packages and classes...
+  [javadoc] Building index for all the packages and classes...
+  [javadoc] Building index for all classes...
+
+jar:
+    [mkdir] Created dir: /Users/johndoyle/Documents/CSCI-E-160/build/jar
+      [jar] Building jar: /Users/johndoyle/Documents/CSCI-E-160/build/jar/HW1.jar
+
+run:
+     [java] Currently 3 passengers on board
+     [java] Current Floor: 1
+     [java] Currently 1 passengers on board
+     [java] Current Floor: 2
+     [java] Currently 0 passengers on board
+     [java] Current Floor: 3
+
+main:
+
+BUILD SUCCESSFUL
+Total time: 3 seconds

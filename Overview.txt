@@ -1,0 +1,25 @@
+Solution:
+
+I created a single class, Elevator, that tracks passenger destinations with an array
+where the floor number is the index into the array. To avoid the offset of floor number
+to array index (floor numbers start at 1 while the array index starts at 0) the array
+is created with an index one larger than the building. When boarding a passenger the
+floor number is checked to ensure it is between these two limits before adding the
+passenger.
+
+One assumption was that the elevator would go to continuous floors, i.e. 1, 2, 3, 4 etc.
+If the elevator could not stop at a floor between these limits this design would have to
+change significantly.
+
+
+Classes:
+
+	Elevator 		- The base elevator class that tracks passengers.
+	ElevatorTest	- A class that instantiates Elevator and boards several passengers
+					before moving the Elevator up and down the building several times.
+
+Files included:
+
+	Overview.txt	- This text file documenting my solution.
+	Output.txt 		- A sample output of the program.
+	build.xml		- Apache Ant Build File.
