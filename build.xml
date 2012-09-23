@@ -1,4 +1,4 @@
-<project name="HW1" basedir="." default="main">
+<project name="HW2" basedir="." default="main">
 
     <property name="src.dir"     value="src"/>
     <property name="build.dir"   value="build"/>
@@ -24,7 +24,7 @@
 	    <fileset dir="." includes="*.txt" />
             <fileset dir="." includes="*.xml" />
             <manifest>
-                <attribute name="Main-Class" value="cscie160.tw1.ElevatorTest"/>
+                <attribute name="Main-Class" value="cscie160.tw2.ElevatorTest"/>
             </manifest>
         </jar>
     </target>
