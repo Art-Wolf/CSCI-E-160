@@ -5,15 +5,26 @@
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="doc.dir"     value="api"/>
+    <property name="lib.dir"     value="lib"/>
+    <property name="test.dir"    value="test"/>
+
+    <path id="master-classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
 
     <target name="clean" description="Delete build and doc directories">
         <delete dir="${build.dir}"/>
         <delete dir="${doc.dir}"/>
+        <delete dir="${test.dir}"/>
     </target>
 
     <target name="compile" description="Create a classes directory and compile the java into it.">
 	<mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
+            <classpath refid="master-classpath"/>
+	</javac>
     </target>
 
     <target name="jar" depends="compile" description="Generate jar file.">
@@ -30,14 +41,29 @@
     </target>
 
     <target name="doc" depends="compile" description="Generate javadoc.">
-       <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+       <javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
+           <classpath refid="master-classpath"/>
+       </javadoc>
+    </target>
+
+    <target name="test" depends="compile" description="Run JUnit Tests.">
+        <mkdir dir="${test.dir}"/>
+        <junit fork="yes" printsummary="yes" haltonfailure="yes">
+            <formatter type="xml"/>
+            <classpath refid="master-classpath"/>
+            <batchtest fork="yes" todir="${test.dir}">
+                <fileset dir="${classes.dir}">
+                  <include name="**/*Test*.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
     </target>
 
     <target name="run" depends="jar">
         <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
     </target>
 
-    <target name="clean-build" depends="clean,jar"/>
+    <target name="clean-build" depends="clean,test"/>
 
     <target name="main" depends="clean,compile,doc,jar,run"/>
 
