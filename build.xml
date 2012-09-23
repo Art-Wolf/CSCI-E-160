@@ -4,9 +4,10 @@
     <property name="build.dir"   value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
-    <property name="doc.dir"     value="api"/>
+    <property name="api.dir"     value="api"/>
     <property name="lib.dir"     value="lib"/>
     <property name="test.dir"    value="test"/>
+    <property name="doc.dir"     value="doc/${ant.project.name}"/>
 
     <path id="master-classpath">
         <fileset dir="${lib.dir}">
@@ -14,9 +15,16 @@
         </fileset>
     </path>
 
-    <target name="clean" description="Delete build and doc directories">
+    <path id="junit-classpath">
+        <pathelement location="${classes.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean" description="Delete build, test, and api directories">
         <delete dir="${build.dir}"/>
-        <delete dir="${doc.dir}"/>
+        <delete dir="${api.dir}"/>
         <delete dir="${test.dir}"/>
     </target>
 
@@ -31,17 +39,16 @@
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
             <fileset dir="${src.dir}" includes="**/*.java"/>
-            <fileset dir="${doc.dir}" />
-	    <fileset dir="." includes="*.txt" />
-            <fileset dir="." includes="*.xml" />
+            <fileset dir="${api.dir}" />
+	    <fileset dir="${doc.dir}" />
             <manifest>
-                <attribute name="Main-Class" value="cscie160.tw2.ElevatorTest"/>
+                <attribute name="Main-Class" value="cscie160.tw2.ElevatorRun"/>
             </manifest>
         </jar>
     </target>
 
     <target name="doc" depends="compile" description="Generate javadoc.">
-       <javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
+       <javadoc sourcepath="${src.dir}" destdir="${api.dir}">
            <classpath refid="master-classpath"/>
        </javadoc>
     </target>
@@ -50,7 +57,7 @@
         <mkdir dir="${test.dir}"/>
         <junit fork="yes" printsummary="yes" haltonfailure="yes">
             <formatter type="xml"/>
-            <classpath refid="master-classpath"/>
+            <classpath refid="junit-classpath"/>
             <batchtest fork="yes" todir="${test.dir}">
                 <fileset dir="${classes.dir}">
                   <include name="**/*Test*.class"/>
@@ -65,6 +72,6 @@
 
     <target name="clean-build" depends="clean,test"/>
 
-    <target name="main" depends="clean,compile,doc,jar,run"/>
+    <target name="main" depends="clean,compile,test,doc,jar,run"/>
 
 </project>

@@ -8,7 +8,7 @@ import cscie160.hw1.Elevator;
 * @author	John Doyle
 * @version	1.0
 */
-public class ElevatorTest {
+public class ElevatorRun {
 
 	/**
 	* Add three passengers and run the elevator up and down the building to
