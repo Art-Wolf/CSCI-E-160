@@ -55,7 +55,7 @@
 
     <target name="test" depends="compile" description="Run JUnit Tests.">
         <mkdir dir="${test.dir}"/>
-        <junit fork="yes" printsummary="yes" haltonfailure="yes">
+        <junit fork="yes" printsummary="yes" haltonfailure="no">
             <formatter type="xml"/>
             <classpath refid="junit-classpath"/>
             <batchtest fork="yes" todir="${test.dir}">

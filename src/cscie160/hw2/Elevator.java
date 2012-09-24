@@ -1,5 +1,8 @@
 package cscie160.hw2;
 
+import cscie160.hw2.Floor;
+import cscie160.hw2.ElevatorFullException;
+
 /**
 * Track passengers as they get on the elevator and off at their destination.
 * 
@@ -93,7 +96,10 @@ public class Elevator {
 	* the top or bottom floor it reverses direction.
 	*
 	*/
-	public void boardPassenger(int floor) {
+	public void boardPassenger(int floor) throws ElevatorFullException {
+		if(PASSENGER_COUNT == CAPACITY) {
+			throw new ElevatorFullException(); 
+		}
 		if(floor >= BOTTOM_FLOOR && floor <= TOP_FLOOR) {
 			PASSENGER_LIST[floor]++;
 			PASSENGER_COUNT++;

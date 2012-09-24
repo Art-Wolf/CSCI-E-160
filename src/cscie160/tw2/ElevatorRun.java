@@ -1,6 +1,7 @@
 package cscie160.tw2;
 
 import cscie160.hw2.Elevator;
+import cscie160.hw2.ElevatorFullException;
 
 /**
 * Test the java class Elevator.
@@ -17,10 +18,14 @@ public class ElevatorRun {
 	*/
 	public static void main(String [] args) {
 		Elevator myElevator = new Elevator();
-		myElevator.boardPassenger(2);
-		myElevator.boardPassenger(2);
-		myElevator.boardPassenger(3);
-		
+		try {
+			myElevator.boardPassenger(2);
+			myElevator.boardPassenger(2);
+			myElevator.boardPassenger(3);
+		} catch (ElevatorFullException excep) {
+
+		}
+
 		System.out.println(myElevator);
 		
 		for(int i = 0; i < 12; i++) {
