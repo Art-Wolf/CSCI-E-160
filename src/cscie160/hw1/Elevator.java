@@ -84,7 +84,8 @@ public class Elevator {
 	public void stop() {
 		PASSENGER_COUNT -= PASSENGER_LIST[CURRENT_FLOOR];
 		PASSENGER_LIST[CURRENT_FLOOR] = 0;
-		
+	
+		System.out.println("Stopping on floor " + CURRENT_FLOOR);	
 		System.out.println(toString());
 	}
 	
@@ -99,4 +100,22 @@ public class Elevator {
 			PASSENGER_COUNT++;
 		}
 	}
+
+	/**
+        * Add three passengers and run the elevator up and down the building to
+        * ensure the passengers get off correctly.
+        *
+        */
+        public static void main(String [] args) {
+                Elevator myElevator = new Elevator();
+                myElevator.boardPassenger(2);
+                myElevator.boardPassenger(2);
+                myElevator.boardPassenger(3);
+
+                System.out.println(myElevator);
+
+                for(int i = 0; i < 12; i++) {
+                        myElevator.move();
+                }
+        }
 }

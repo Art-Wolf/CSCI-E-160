@@ -1,4 +1,4 @@
-<project name="HW2" basedir="." default="main">
+<project name="hw1" basedir="." default="main" xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
 
     <property name="src.dir"     value="src"/>
     <property name="build.dir"   value="build"/>
@@ -7,6 +7,7 @@
     <property name="api.dir"     value="api"/>
     <property name="lib.dir"     value="lib"/>
     <property name="test.dir"    value="test"/>
+    <property name="config.dir"  value="config"/>
     <property name="doc.dir"     value="doc/${ant.project.name}"/>
 
     <path id="master-classpath">
@@ -21,6 +22,26 @@
             <include name="*.jar"/>
         </fileset>
     </path>
+
+    <target name="checkstyle"
+           description="Inspects source code for Javadocs errors">
+
+     <taskdef resource="checkstyletask.properties">
+       <classpath>
+         <fileset dir="${lib.dir}" includes="*.jar" />
+       </classpath>
+     </taskdef>
+
+     <checkstyle config="${config.dir}/sun_checks.xml"
+                 failOnViolation="true">
+       <fileset dir="src">
+         <include name="**/*.java" />
+       </fileset>
+     </checkstyle>
+
+     <echo>Checkstyle done without error</echo>
+
+   </target>
 
     <target name="clean" description="Delete build, test, and api directories">
         <delete dir="${build.dir}"/>
@@ -42,7 +63,7 @@
             <fileset dir="${api.dir}" />
 	    <fileset dir="${doc.dir}" />
             <manifest>
-                <attribute name="Main-Class" value="cscie160.tw2.ElevatorRun"/>
+                <attribute name="Main-Class" value="cscie160.${ant.project.name}.Elevator"/>
             </manifest>
         </jar>
     </target>
