@@ -23,8 +23,12 @@ public class Floor {
     public Floor(final int floorNumber, final int passengerCount,
             final Elevator myElevator) {
         this.floorNumber = floorNumber;
+
+        /** Request the elevator if there are passengers on the floor. */
         this.passengerCount = passengerCount;
-        myElevator.registerRequest(this.floorNumber);
+        if (this.passengerCount > 0) {
+            myElevator.registerRequest(this.floorNumber);
+        }
     }
 
     /**
@@ -34,6 +38,14 @@ public class Floor {
      * @param myElevator The elevator servicing the floor.
      */
     public final void unloadPassengers(final Elevator myElevator) {
+
+        /** If the Floor has passengers wait, remove the request for the
+         * Elevator.
+         */
+        if (passengerCount > 0) {
+            myElevator.unregisterRequest(floorNumber);
+        }
+
         int offElevator = myElevator.unloadPassengers();
 
         /** Print the status of people getting off the elevator. */
@@ -67,9 +79,9 @@ public class Floor {
         System.out.println("\t" + passengerCount
                 + " passengers remaining on the floor.");
 
-        /** If no-one left - unregister the request. */
-        if (passengerCount == 0) {
-            myElevator.unregisterRequest(floorNumber);
+        /** If passengers remain - register a new request. */
+        if (passengerCount > 0) {
+            myElevator.registerRequest(floorNumber);
         }
     }
 }

@@ -2,7 +2,6 @@ package cscie160.hw2;
 
 import java.util.Random;
 
-
 /**
  * Track passengers as get on and off the elevator at different floors.
  *
@@ -145,6 +144,8 @@ public class Elevator {
     public final String toString() {
 
         String output = "Currently " + passengerCount + " passengers on board";
+        output += System.getProperty("line.separator");
+        output += "Current Floor " + (currentFloor + 1);
         output += System.getProperty("line.separator");
         output += "Direction: " + direction.name();
         output += System.getProperty("line.separator");

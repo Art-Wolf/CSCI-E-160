@@ -60,8 +60,8 @@
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
             <fileset dir="${src.dir}" includes="**/*.java"/>
-            <fileset dir="${api.dir}" />
-	    <fileset dir="${doc.dir}" />
+            <fileset dir="." includes="api/*"/>
+	    <fileset dir="." includes="doc/hw2/*"/>
             <manifest>
                 <attribute name="Main-Class" value="cscie160.${ant.project.name}.Elevator"/>
             </manifest>
@@ -93,6 +93,6 @@
 
     <target name="clean-build" depends="clean,test"/>
 
-    <target name="main" depends="clean,compile,checkstyle,doc,jar,run"/>
+    <target name="main" depends="clean,compile,checkstyle,test,doc,jar,run"/>
 
 </project>

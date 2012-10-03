@@ -1,0 +1,64 @@
+   Homework 2
+   John Doyle
+   10/03/2012
+
+Overview
+Purpose
+   Have an elevator object move people amongst several floor objects that make up a building. Exception handling
+   is demonstrated with an elevator capacity.
+
+Brief description
+   The elevator initalizes and creates seven Floor objects, passsing each one the floor number it represents, a
+   random number of people waiting for the elevator and the Elevator object itself so that each floor can
+   register a request for an elevator.
+
+   The elevator will move up the floors and only stop at a floor that either requested it or current passengers
+   that are in the elevator are destined for.
+
+Goals
+Primary Requirements:
+   1. Creating a Floor object per floor in the building.
+   2. Pass control from the Elevator to the Floor.
+   3. Have the Floor unload passengers from the Elevator.
+   4. Throw an exception when the the Elevator attempts to exceed capacity.
+Secondary Requirements:
+   1. Have the Floor register a request for an Elevator.
+   2. Unregister a request when an Elevator arrives.
+   3. Reregister a request if people remain on the Floor.
+
+See Also
+   Assignment URL : http://courses.dce.harvard.edu/~cscie160/hw2-05.htm
+   Coding Style : http://java.net/projects/woodstock/sources/svn/content/trunk/webui/tools/checkstyle/sun_checks.xml
+
+Assumptions
+   Demonstrate enumeration and ensure javadoc matches offical style. 
+
+Risks
+   Due to the use of random generation, there is the possibility that everything will be initialzed with 0 passengers,
+   in which case the elevator will not move from the first floor.
+
+Current procedure/functionality
+   Elevator.java
+	Elevator()
+	main(args)
+	boardPassenger(floorNumber)
+	toString()
+	move()
+	stop()
+
+New procedure/functionality
+   Elevator.java
+	registerRequest(floorNumber)
+	unregisterRequest(floorNumber)
+	unloadPassengers()
+   Floor.java
+	Floor(floorNumber, passengerCount, Elevator)
+	unloadPassengers(Elevator)
+   Direction.java
+   ElevatorFullException.java
+	ElevatorFullException(message)
+
+How to run the assignment
+   java -classpath hw2.jar cscie160.hw2.Elevator
+   or
+   java -jar hw2.jar
