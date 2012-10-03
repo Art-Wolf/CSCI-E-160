@@ -8,30 +8,51 @@ package cscie160.hw1;
 */
 public class Elevator {
    /** The total capacity for the elevator - logic not implemented. */
-   public final int CAPACITY = 10;
+   public static final int CAPACITY = 10;
 
    /** The top floor the elevator goes to. */
-   public final int TOP_FLOOR = 7;
+   public static final int TOP_FLOOR = 7;
 
    /** The bottom floor the elevator goes to. */
-   public final int BOTTOM_FLOOR = 1;
+   public static final int BOTTOM_FLOOR = 1;
 
-   private int CURRENT_FLOOR = 1;
-   private boolean UP = true;
+   /** For test run, the first passenger will disembark on this floor. */
+   public static final int FIRST_DESTINATION = 2;
 
-   private int PASSENGER_LIST[];
-   private int PASSENGER_COUNT = 0;
-   private int TARGET_FLOOR = 1;
+   /** For test run, the second passenger will disembark on this floor. */
+   public static final int SECOND_DESTINATION = 2;
+
+   /** For test run, the third passenger will disembark on this floor. */
+   public static final int THIRD_DESTINATION = 3;
+
+   /** Number of executions the test run will complete. */
+   public static final int RUN_TOTAL = 12;
+
+   /** The current floor the Elevator located at, default ground floor. */
+   private int currentFloor = 1;
+
+   /** Direction the elevator is moving in, default up. */
+   private boolean up = true;
+
+   /** Array of passengers with the destination floors. */
+   private int[] passengerList;
+
+   /** Current total number of passengers in the Elevator. */
+   private int passengerCount = 0;
+
+   /** The next target floor to unload a passenger at. **/
+   private int targetFloor = 1;
 
    /**
-   * Elevator constructor that creates the floor array to track passenger destinations.
+   * Elevator constructor that creates the floor array to track passenger
+   * destinations.
    *
    */
    public Elevator() {
-      PASSENGER_LIST = new int[TOP_FLOOR + 1];
+      passengerList = new int[TOP_FLOOR + 1];
 
-      for ( int i = BOTTOM_FLOOR; i <= TOP_FLOOR; i++) {
-         PASSENGER_LIST[i] = 0;
+      for (int i = BOTTOM_FLOOR; i <= TOP_FLOOR; i++) {
+         passengerList[i] = 0;
       }
    }
 
@@ -40,52 +61,53 @@ public class Elevator {
    * the top or bottom floor it reverses direction.
    *
    */
-   public void move() {
-      if (UP) {
-         if (CURRENT_FLOOR == TOP_FLOOR) {
-            UP = false;
-            CURRENT_FLOOR--;
+   public final void move() {
+      if (up) {
+         if (currentFloor == TOP_FLOOR) {
+            up = false;
+            currentFloor--;
          } else {
-            CURRENT_FLOOR++;
+            currentFloor++;
          }
       } else {
-         if (CURRENT_FLOOR == BOTTOM_FLOOR) {
-            UP = true;
-            CURRENT_FLOOR++;
+         if (currentFloor == BOTTOM_FLOOR) {
+            up = true;
+            currentFloor++;
          } else {
-            CURRENT_FLOOR--;
+            currentFloor--;
          }
       }
 
-      if(PASSENGER_LIST[CURRENT_FLOOR] > 0) {
+      if (passengerList[currentFloor] > 0) {
          stop();
       }
    }
 
    /**
-   * Print out the current status of the Elevator - number of passengers and current
-   * floor.
+   * Print out the current status of the Elevator - number of passengers and
+   * current floor.
    *
+   * @return Current status of the elevator.
    */
-   @Override public String toString() {
-      String output = "Currently " + PASSENGER_COUNT + " passengers on board";
+   @Override public final String toString() {
+      String output = "Currently " + passengerCount + " passengers on board";
       output += System.getProperty("line.separator");
-      output += "Current Floor: " + CURRENT_FLOOR;
+      output += "Current Floor: " + currentFloor;
 
       return output;
    }
 
    /**
-   * When the elevator reaches a floor which one or more passengers had indicated was
-   * their destination, the passenger count decrements and the passengers are removed.
-   * The status is then printed out to the console.
+   * When the elevator reaches a floor which one or more passengers had
+   * indicated was their destination, the passenger count decrements and the
+   * passengers are removed. The status is then printed out to the console.
    *
    */
-   public void stop() {
-      PASSENGER_COUNT -= PASSENGER_LIST[CURRENT_FLOOR];
-      PASSENGER_LIST[CURRENT_FLOOR] = 0;
+   public final void stop() {
+      passengerCount -= passengerList[currentFloor];
+      passengerList[currentFloor] = 0;
 
-      System.out.println("Stopping on floor " + CURRENT_FLOOR);
+      System.out.println("Stopping on floor " + currentFloor);
       System.out.println(toString());
    }
 
@@ -93,29 +115,32 @@ public class Elevator {
    * Moves the elevator in the direction it is currently going. If it hits
    * the top or bottom floor it reverses direction.
    *
+   * @param floor The floor the passeneger is boarding from.
    */
-   public void boardPassenger(int floor) {
-      if(floor >= BOTTOM_FLOOR && floor <= TOP_FLOOR) {
-         PASSENGER_LIST[floor]++;
-         PASSENGER_COUNT++;
+   public final void boardPassenger(final int floor) {
+      if (floor >= BOTTOM_FLOOR && floor <= TOP_FLOOR) {
+         passengerList[floor]++;
+         passengerCount++;
       }
    }
 
    /**
-        * Add three passengers and run the elevator up and down the building to
-        * ensure the passengers get off correctly.
-        *
-        */
-        public static void main(String [] args) {
-                Elevator myElevator = new Elevator();
-                myElevator.boardPassenger(2);
-                myElevator.boardPassenger(2);
-                myElevator.boardPassenger(3);
+   * Add three passengers and run the elevator up and down the building to
+   * ensure the passengers get off correctly.
+   *
+   * @param args Arguments passed into the application.
+   */
+   public static void main(final String [] args) {
 
-                System.out.println(myElevator);
+       Elevator myElevator = new Elevator();
+       myElevator.boardPassenger(FIRST_DESTINATION);
+       myElevator.boardPassenger(SECOND_DESTINATION);
+       myElevator.boardPassenger(THIRD_DESTINATION);
 
-                for(int i = 0; i < 12; i++) {
-                        myElevator.move();
-                }
+       System.out.println(myElevator);
+
+       for (int i = 0; i < RUN_TOTAL; i++) {
+           myElevator.move();
         }
+    }
 }

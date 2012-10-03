@@ -1,4 +1,4 @@
-<project name="hw1" basedir="." default="main" xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
+<project name="hw2" basedir="." default="main" xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
 
     <property name="src.dir"     value="src"/>
     <property name="build.dir"   value="build"/>
@@ -33,7 +33,7 @@
      </taskdef>
 
      <checkstyle config="${config.dir}/sun_checks.xml"
-                 failOnViolation="true">
+                 failOnViolation="false">
        <fileset dir="src">
          <include name="**/*.java" />
        </fileset>
@@ -93,6 +93,6 @@
 
     <target name="clean-build" depends="clean,test"/>
 
-    <target name="main" depends="clean,compile,test,doc,jar,run"/>
+    <target name="main" depends="clean,compile,checkstyle,doc,jar,run"/>
 
 </project>

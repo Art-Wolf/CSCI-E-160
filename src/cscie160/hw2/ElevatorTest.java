@@ -1,10 +1,7 @@
-package cscie160.tw2;
+package cscie160.hw2;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import cscie160.hw2.Elevator;
-import cscie160.hw2.ElevatorFullException;
-
 
 public class ElevatorTest {
 
