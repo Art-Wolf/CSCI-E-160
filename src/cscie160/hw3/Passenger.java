@@ -14,6 +14,14 @@ public class Passenger {
     private Floor destinationFloor;
 
     /**
+     * 
+     */
+    public Passenger(Floor currentFloor, Floor destinationFloor) {
+        this.currentFloor = currentFloor;
+        this.destinationFloor = destinationFloor;
+    }
+
+    /**
      * Getter for the current Floor the Passenger is on.
      *
      * @return the currentFloor

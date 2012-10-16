@@ -68,11 +68,11 @@ public class ElevatorTest {
                 .substring(PASS_COUNT_INDEX_START, PASS_COUNT_INDEX_END));
 
         /** Add a passenger, fail if an exception is thrown. */
-        try {
-            myElevator.boardPassenger(2);
-        } catch (ElevatorFullException excep) {
-            assertTrue(false);
-        }
+//        try {
+//            myElevator.boardPassenger(2);
+//        } catch (ElevatorFullException excep) {
+//            assertTrue(false);
+//        }
 
         /** Confirm the status includes our new passenger. */
         if (myElevator.toString()
@@ -94,21 +94,21 @@ public class ElevatorTest {
         boolean testSuccess = false;
 
         /** Add 11 passengers, fail if an exception is not thrown. */
-        try {
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-            myElevator.boardPassenger(2);
-        } catch (ElevatorFullException excep) {
-            testSuccess = true;
-        }
+//        try {
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//            myElevator.boardPassenger(2);
+//        } catch (ElevatorFullException excep) {
+//            testSuccess = true;
+//        }
 
         if (!testSuccess) {
             assertTrue(false);
@@ -133,11 +133,11 @@ public class ElevatorTest {
          * Add a passenger destined for the second floor, index 1.
          * fail if an exception is thrown.
          */
-        try {
-            myElevator.boardPassenger(1);
-        } catch (ElevatorFullException excep) {
-            assertTrue(false);
-        }
+//        try {
+//            myElevator.boardPassenger(1);
+//        } catch (ElevatorFullException excep) {
+//            assertTrue(false);
+//        }
 
         myElevator.move();
 
