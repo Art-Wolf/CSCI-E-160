@@ -1,0 +1,27 @@
+   Homework 3
+   John Doyle
+   10/17/2012
+
+Overview
+Purpose
+
+Brief description
+
+Goals
+Primary Requirements:
+Secondary Requirements:
+
+See Also
+
+Assumptions
+
+Risks
+
+Current procedure/functionality
+
+New procedure/functionality
+
+How to run the assignment
+   java -classpath hw3.jar cscie160.hw3.Elevator
+   or
+   java -jar hw3.jar
