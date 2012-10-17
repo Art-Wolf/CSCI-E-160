@@ -17,7 +17,7 @@ public class Elevator {
     private static final int TOP_FLOOR = 7;
 
     /** Number of executions the test run will complete. */
-    private static final int RUN_TOTAL = 25;
+    private static final int RUN_TOTAL = 255;
 
     /** The current floor the Elevator located at, default ground floor. */
     private int currentFloor = 0;
@@ -54,59 +54,40 @@ public class Elevator {
          * Initialize Passengers aiming for a higher floor.
          */
         for (int i = 0; i < TOP_FLOOR - 1; i++) {
-            System.out.println("Floor " + i);
-
-            ArrayList<Passenger> passengersUp = new ArrayList<Passenger>();
-            ArrayList<Passenger> passengersDown = new ArrayList<Passenger>();
 
             /**
              * Generate a Passenger going to a random floor above floor i and
              * add the passenger to a collection.
              */
-            for (int j = (i + 1); j < TOP_FLOOR; j++) {
-                int passengerCount = new Random().nextInt(CAPACITY);
-                System.out.println("\tGenerating " + passengerCount
-                        + " going up from floor: " + j);
-                for (int k = 0; k < passengerCount; k++) {
-                    int destinationFloor = j
-                            + new Random().nextInt(TOP_FLOOR - j);
-                    if (destinationFloor != j) {
-                        System.out.println("\t\tPassenger " + (k + 1)
-                                + " destined for: " + destinationFloor);
-                        Passenger currentPassenger = new Passenger(
-                                buildingsFloor[i],
-                                buildingsFloor[destinationFloor]);
-                        passengersUp.add(currentPassenger);
-                    }
-                }
-            }
+            buildingsFloor[i].setPassengersUp(generatePassengers(i, TOP_FLOOR));
 
             /**
              * Generate a Passenger going to a random floor below floor i and
              * add the passenger to a collection.
              */
-            for (int j = 0; j < i; j++) {
-                int passengerCount = new Random().nextInt(CAPACITY);
-                System.out.println("\tGenerating " + passengerCount
-                        + " going down from floor: " + j);
-                for (int k = 0; k < passengerCount; k++) {
-                    int destinationFloor = j
-                            + new Random().nextInt(TOP_FLOOR - j);
-                    if (destinationFloor != j) {
-                        System.out.println("\t\tPassenger " + (k + 1)
-                                + " destined for: " + destinationFloor);
-
-                        Passenger currentPassenger = new Passenger(
-                                buildingsFloor[i],
-                                buildingsFloor[destinationFloor]);
-                        passengersDown.add(currentPassenger);
-                    }
-                }
-            }
-
-            buildingsFloor[i].setPassengersUp(passengersUp);
-            buildingsFloor[i].setPassengersDown(passengersDown);
+            buildingsFloor[i].setPassengersDown(generatePassengers(0, i));
         }
+    }
+
+    /**
+     * @param currentFloorNumber
+     * @param engingFloorNumber
+     */
+    private ArrayList<Passenger> generatePassengers(int currentFloorNumber, int endingFloorNumber) {
+        ArrayList<Passenger> passengersList = new ArrayList<Passenger>();
+        for (int destinationFloorNumber = (currentFloorNumber + 1); 
+                destinationFloorNumber < endingFloorNumber; 
+                destinationFloorNumber++) {
+            int passengerCount = new Random().nextInt(2);
+            for (int i = 0; i < passengerCount; i++) {
+                Passenger currentPassenger = new Passenger(
+                        buildingsFloor[currentFloorNumber],
+                        buildingsFloor[destinationFloorNumber]);
+                passengersList.add(currentPassenger);
+            }
+        }
+        
+        return passengersList;
     }
 
     /**
@@ -117,7 +98,7 @@ public class Elevator {
      *            The floor number which made the request.
      */
     public final void registerRequest(final int floorNumber) {
-        if ((floorNumber > 0) && (floorNumber <= TOP_FLOOR)) {
+        if ((floorNumber >= 0) && (floorNumber <= TOP_FLOOR)) {
             floorRegistry[floorNumber] = true;
         }
     }
@@ -130,7 +111,8 @@ public class Elevator {
      *            The floor object which is removing the request.
      */
     public final void unregisterRequest(final int floorNumber) {
-        if ((floorNumber > 0) && (floorNumber <= TOP_FLOOR)) {
+        if ((floorNumber >= 0) && (floorNumber <= TOP_FLOOR)) {
+            System.out.println("Changing flag to false");
             floorRegistry[floorNumber] = false;
         }
     }
@@ -143,34 +125,42 @@ public class Elevator {
      */
     public final void move() {
 
-        /** Continue the elevator in the direction it was previously moving. */
-        if (direction == Direction.UP) {
-            currentFloor++;
-        } else {
-            currentFloor--;
-        }
-
         /**
          * If there are passengers destined for the floor or if there are people
          * waiting on the floor and there is room on the elevator, stop the
          * elevator.
          */
-        for (Passenger currentPassenger : passengerList) {
+        boolean stopCheck = false;
 
-            if ((currentPassenger.getDestinationFloor().getFloorNumber() == currentFloor)
-                    || ((floorRegistry[currentFloor]) && (passengerList.size() <= CAPACITY))) {
-                stop();
+        for (Passenger currentPassenger : passengerList) {
+            if (currentPassenger.getDestinationFloor().getFloorNumber() == currentFloor) {
+                stopCheck = true;
             }
+        }
+
+        if ((floorRegistry[currentFloor]) && (passengerList.size() <= CAPACITY)) {
+            stopCheck = true;
+        }
+
+        if (stopCheck) {
+            stop();
         }
 
         /**
          * Reverse the direction of the elevator when it hits the building
          * ground or top floor.
          */
-        if (currentFloor == (buildingsFloor.length - 1)) {
+        if (currentFloor == (TOP_FLOOR - 1)) {
             direction = Direction.DOWN;
         } else if (currentFloor == 0) {
             direction = Direction.UP;
+        }
+        
+        /** Continue the elevator in the direction it was previously moving. */
+        if (direction == Direction.UP) {
+            currentFloor++;
+        } else {
+            currentFloor--;
         }
     }
 
@@ -185,6 +175,13 @@ public class Elevator {
 
         String output = "Currently " + passengerList.size()
                 + " passengers on board";
+
+        for (Passenger currentPassenger : passengerList) {
+            output += System.getProperty("line.separator");
+            output += "\tPassenger going to floor "
+                    + (currentPassenger.getDestinationFloor().getFloorNumber() + 1);
+        }
+
         output += System.getProperty("line.separator");
         output += "Current Floor " + (currentFloor + 1);
         output += System.getProperty("line.separator");
@@ -224,9 +221,10 @@ public class Elevator {
         for (Passenger currentPassenger : passengerList) {
             if (currentPassenger.getDestinationFloor().getFloorNumber() == currentFloor) {
                 disembarkingList.add(currentPassenger);
-                passengerList.remove(currentPassenger);
             }
         }
+
+        passengerList.removeAll(disembarkingList);
 
         return disembarkingList;
     }

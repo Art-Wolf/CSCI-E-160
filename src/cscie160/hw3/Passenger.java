@@ -6,37 +6,18 @@ package cscie160.hw3;
  * @author John Doyle
  * @version 1.0
  */
-public class Passenger {
+public class Passenger extends Resident {
 
-    /** Track the floor the Passenger is currently on. */
-    private Floor currentFloor;
+    
     /** Track the floor the Passenger is destined for. */
-    private Floor destinationFloor;
+    private final Floor destinationFloor;
 
     /**
      * 
      */
     public Passenger(Floor currentFloor, Floor destinationFloor) {
-        this.currentFloor = currentFloor;
+        super(currentFloor);
         this.destinationFloor = destinationFloor;
-    }
-
-    /**
-     * Getter for the current Floor the Passenger is on.
-     *
-     * @return the currentFloor
-     */
-    public Floor getCurrentFloor() {
-        return currentFloor;
-    }
-
-    /**
-     * Set the current Floor the Passenger is on.
-     *
-     * @param currentFloor the currentFloor to set
-     */
-    public void setCurrentFloor(Floor currentFloor) {
-        this.currentFloor = currentFloor;
     }
 
     /**
@@ -46,14 +27,5 @@ public class Passenger {
      */
     public Floor getDestinationFloor() {
         return destinationFloor;
-    }
-
-    /**
-     * Set the destination Floor for the Passenger.
-     *
-     * @param destinationFloor the destinationFloor to set
-     */
-    public void setDestinationFloor(Floor destinationFloor) {
-        this.destinationFloor = destinationFloor;
     }
 }

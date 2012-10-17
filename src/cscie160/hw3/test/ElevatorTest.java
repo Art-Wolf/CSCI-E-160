@@ -1,7 +1,9 @@
-package cscie160.hw3;
+package cscie160.hw3.test;
 
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+
+import cscie160.hw3.Elevator;
 
 /**
  * Java Unit Test for the Elevator object.
