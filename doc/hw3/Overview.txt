@@ -1,25 +1,87 @@
    Homework 3
    John Doyle
-   10/17/2012
+   10/15/2012
 
 Overview
 Purpose
+   Have an elevator object pass passenger objects between sevearl floor objects.
 
 Brief description
+   The elevator initalizes and creates seven Floor objects, passsing each one the floor number it represents,
+   and generating sevearl lists of passengers on each floor.
+
+   There are three lists of people per Floor. If the person is a passenger they has a destination floor in
+   mind. They are seperated into queues based on which direction they are heading. The third is an
+   ArrayList of residents of the floor.
+
+   The use of a queue was based on the expectation that only one person can try to enter the elevator at
+   any one time, meaning they will be poped off the stack.
+
+   When an Elevator stops, the collection of passengers will be looped over and checked if this is a destination
+   for them. Due to the need to loop, this was an ArrayList.
+
+   The elevator will move up the floors and only stop at a floor that either requested it or current passengers
+   that are in the elevator are destined for.
 
 Goals
 Primary Requirements:
+   1. Create Passenger object with current and destination Floors.
+   2. Have the Floor manage the passengers in three collections.
 Secondary Requirements:
+   1. Have the Elevator unload a collection of Passengers.
+   2. Print the status of all current Passengers.
 
 See Also
+   Assignment URL : http://courses.dce.harvard.edu/~cscie160/hw3-05.htm
+   Coding Style : http://java.net/projects/woodstock/sources/svn/content/trunk/webui/tools/checkstyle/sun_checks.xml
 
 Assumptions
+   Demonstrate collections, accessors, mutators, interface, and abstract classes.
 
 Risks
+   Due to the use of random generation, there is the possibility that everything will be initialzed with 0 passengers,
+   in which case the elevator will not move from the first floor.
 
 Current procedure/functionality
+   Elevator.java
+	Elevator()
+	main(args)
+	boardPassenger(floorNumber)
+	toString()
+	move()
+	stop()
+        registerRequest(floorNumber)
+        unregisterRequest(floorNumber)
+        unloadPassengers()
+
+   Floor.java
+        Floor(floorNumber, passengerCount, Elevator)
+        unloadPassengers(Elevator)
+   Direction.java
+   ElevatorFullException.java
+        ElevatorFullException(message)
 
 New procedure/functionality
+   Elevator.java
+	generatePassengers(startFloorNumber, endFloorNumber)
+	getDirection()
+   Floor.java
+	attemptBoarding(myElevator, passengerList)
+	getFloor()
+	setPassengersDown(passengersDown)
+	setPassengersUp(passengersUp)
+	setPassengersOnFloor(passengersOnFloor)
+   Person.java
+   Resident.java
+	Resident(currentFloor)
+	getCurrentFloor()
+	setCurrentFloor(currentFloor)
+   Passenger.java
+	Passenger(currentFloor, destinationFloor)
+	getDestionationFloor()
+   Direction.java
+   ElevatorFullException.java
+	ElevatorFullException(message)
 
 How to run the assignment
    java -classpath hw3.jar cscie160.hw3.Elevator

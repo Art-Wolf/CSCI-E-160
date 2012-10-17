@@ -1,5 +1,11 @@
 package cscie160.hw3;
 
+/**
+ * Basic interface all people will have in the building.
+ *
+ * @author John Doyle
+ * @version 1.0
+ */
 public interface Person {
 
     /**
@@ -7,13 +13,12 @@ public interface Person {
      *
      * @return the currentFloor
      */
-    public abstract Floor getCurrentFloor();
+    Floor getCurrentFloor();
 
     /**
      * Set the current Floor the Passenger is on.
      *
      * @param currentFloor the currentFloor to set
      */
-    public abstract void setCurrentFloor(Floor currentFloor);
-
+    void setCurrentFloor(Floor currentFloor);
 }

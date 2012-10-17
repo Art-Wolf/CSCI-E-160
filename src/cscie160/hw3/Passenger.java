@@ -8,14 +8,17 @@ package cscie160.hw3;
  */
 public class Passenger extends Resident {
 
-    
     /** Track the floor the Passenger is destined for. */
     private final Floor destinationFloor;
 
     /**
-     * 
+     * Constructor that sets the current floor by calling the super constructor
+     * and then sets the destination floor.
+     *
+     * @param currentFloor The floor the passenger resides on.
+     * @param destinationFloor The floor the passenger aims for.
      */
-    public Passenger(Floor currentFloor, Floor destinationFloor) {
+    public Passenger(final Floor currentFloor, final Floor destinationFloor) {
         super(currentFloor);
         this.destinationFloor = destinationFloor;
     }
@@ -25,7 +28,7 @@ public class Passenger extends Resident {
      *
      * @return the destinationFloor
      */
-    public Floor getDestinationFloor() {
+    public final Floor getDestinationFloor() {
         return destinationFloor;
     }
 }

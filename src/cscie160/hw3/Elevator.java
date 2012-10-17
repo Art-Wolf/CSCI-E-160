@@ -7,7 +7,7 @@ import java.util.Random;
  * Track passengers as get on and off the elevator at different floors.
  *
  * @author John Doyle
- * @version 2.0
+ * @version 3.0
  */
 public class Elevator {
     /** The total capacity for the elevator - logic not implemented. */
@@ -19,7 +19,8 @@ public class Elevator {
     /** Number of executions the test run will complete. */
     private static final int RUN_TOTAL = 255;
 
-    /** Number of passengers that can be generated destined for any particular
+    /**
+     * Number of passengers that can be generated destined for any particular
      * floor on the current floor.
      */
     private static final int MAX_GEN_PASSENGERS = 2;
@@ -75,26 +76,31 @@ public class Elevator {
     }
 
     /**
-     * Generate a random number of Passengers on the current floor that are
-     * destined for another floor.
+     * Generate a random number of Passengers between two floors.
      *
-     * @param currentFloorNumber
-     *            The floor number that the passengers are currently on.
-     * @param endingFloorNumber
+     * @param startFloorNumber
+     *            The bottom floor number to generate from.
+     * @param endFloorNumber
      *            The top floor to generate passengers up to.
-     * @return A list of passengers with current and destination floors.
+     * @return A list of passengers with start and end floors.
      */
     private ArrayList<Passenger> generatePassengers(
-            final int currentFloorNumber,
-            final int endingFloorNumber) {
+            final int startFloorNumber,
+            final int endFloorNumber) {
         ArrayList<Passenger> passengersList = new ArrayList<Passenger>();
-        for (int destinationFloorNumber = (currentFloorNumber + 1);
-                destinationFloorNumber < endingFloorNumber;
+
+        /**
+         * Loop over the floors between the starting and ending floor numbers.
+         */
+        for (int destinationFloorNumber = (startFloorNumber + 1);
+                destinationFloorNumber < endFloorNumber;
                 destinationFloorNumber++) {
+
+            /** Generate a random number of passengers and them to the list. */
             int passengerCount = new Random().nextInt(MAX_GEN_PASSENGERS);
             for (int i = 0; i < passengerCount; i++) {
                 Passenger currentPassenger = new Passenger(
-                        buildingsFloor[currentFloorNumber],
+                        buildingsFloor[startFloorNumber],
                         buildingsFloor[destinationFloorNumber]);
                 passengersList.add(currentPassenger);
             }
@@ -104,7 +110,7 @@ public class Elevator {
     }
 
     /**
-     * A floor can register with the elevator that there are passengers waiting
+     * A floor can register with the elevator when there are passengers waiting
      * to be collected.
      *
      * @param floorNumber
@@ -131,21 +137,18 @@ public class Elevator {
     }
 
     /**
-     * Moves the elevator in the direction it is currently going. Let passengers
-     * board and unload at the required floors and reverse direction when
-     * appropriate.
+     * Moves the elevator in the direction it is currently going. Let
+     * passengers board and unload at the required floors and reverse
+     * direction when appropriate.
      *
      */
     public final void move() {
-
-        /**
-         * If there are passengers destined for the floor or if there are people
-         * waiting on the floor and there is room on the elevator, stop the
-         * elevator.
-         *
-         */
         boolean stopCheck = false;
 
+        /**
+         * Stop the elevator if there are passengers on board destined for the
+         * current floor.
+         */
         for (Passenger currentPassenger : passengerList) {
             if (currentPassenger.getDestinationFloor().getFloorNumber()
                     == currentFloor) {
@@ -153,6 +156,10 @@ public class Elevator {
             }
         }
 
+        /**
+         * Stop the elevator if there are people waiting to baord and there is
+         * room.
+         */
         if ((floorRegistry[currentFloor])
                 && (passengerList.size() <= CAPACITY)) {
             stopCheck = true;
