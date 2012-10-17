@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * Track passengers as get on and off the elevator at different floors.
- * 
+ *
  * @author John Doyle
  * @version 2.0
  */
@@ -18,6 +18,11 @@ public class Elevator {
 
     /** Number of executions the test run will complete. */
     private static final int RUN_TOTAL = 255;
+
+    /** Number of passengers that can be generated destined for any particular
+     * floor on the current floor.
+     */
+    private static final int MAX_GEN_PASSENGERS = 2;
 
     /** The current floor the Elevator located at, default ground floor. */
     private int currentFloor = 0;
@@ -36,7 +41,7 @@ public class Elevator {
 
     /**
      * Elevator constructor, initializes the floors in the building.
-     * 
+     *
      */
     public Elevator() {
 
@@ -70,15 +75,23 @@ public class Elevator {
     }
 
     /**
+     * Generate a random number of Passengers on the current floor that are
+     * destined for another floor.
+     *
      * @param currentFloorNumber
-     * @param engingFloorNumber
+     *            The floor number that the passengers are currently on.
+     * @param endingFloorNumber
+     *            The top floor to generate passengers up to.
+     * @return A list of passengers with current and destination floors.
      */
-    private ArrayList<Passenger> generatePassengers(int currentFloorNumber, int endingFloorNumber) {
+    private ArrayList<Passenger> generatePassengers(
+            final int currentFloorNumber,
+            final int endingFloorNumber) {
         ArrayList<Passenger> passengersList = new ArrayList<Passenger>();
-        for (int destinationFloorNumber = (currentFloorNumber + 1); 
-                destinationFloorNumber < endingFloorNumber; 
+        for (int destinationFloorNumber = (currentFloorNumber + 1);
+                destinationFloorNumber < endingFloorNumber;
                 destinationFloorNumber++) {
-            int passengerCount = new Random().nextInt(2);
+            int passengerCount = new Random().nextInt(MAX_GEN_PASSENGERS);
             for (int i = 0; i < passengerCount; i++) {
                 Passenger currentPassenger = new Passenger(
                         buildingsFloor[currentFloorNumber],
@@ -86,14 +99,14 @@ public class Elevator {
                 passengersList.add(currentPassenger);
             }
         }
-        
+
         return passengersList;
     }
 
     /**
      * A floor can register with the elevator that there are passengers waiting
      * to be collected.
-     * 
+     *
      * @param floorNumber
      *            The floor number which made the request.
      */
@@ -106,7 +119,7 @@ public class Elevator {
     /**
      * When all passengers have been collected from a particular floor, the
      * floor will remove it's request.
-     * 
+     *
      * @param floorNumber
      *            The floor object which is removing the request.
      */
@@ -121,7 +134,7 @@ public class Elevator {
      * Moves the elevator in the direction it is currently going. Let passengers
      * board and unload at the required floors and reverse direction when
      * appropriate.
-     * 
+     *
      */
     public final void move() {
 
@@ -129,16 +142,19 @@ public class Elevator {
          * If there are passengers destined for the floor or if there are people
          * waiting on the floor and there is room on the elevator, stop the
          * elevator.
+         *
          */
         boolean stopCheck = false;
 
         for (Passenger currentPassenger : passengerList) {
-            if (currentPassenger.getDestinationFloor().getFloorNumber() == currentFloor) {
+            if (currentPassenger.getDestinationFloor().getFloorNumber()
+                    == currentFloor) {
                 stopCheck = true;
             }
         }
 
-        if ((floorRegistry[currentFloor]) && (passengerList.size() <= CAPACITY)) {
+        if ((floorRegistry[currentFloor])
+                && (passengerList.size() <= CAPACITY)) {
             stopCheck = true;
         }
 
@@ -155,7 +171,7 @@ public class Elevator {
         } else if (currentFloor == 0) {
             direction = Direction.UP;
         }
-        
+
         /** Continue the elevator in the direction it was previously moving. */
         if (direction == Direction.UP) {
             currentFloor++;
@@ -167,7 +183,7 @@ public class Elevator {
     /**
      * Print out the current status of the Elevator - number of passengers and
      * current floor.
-     * 
+     *
      * @return Current status of the elevator.
      */
     @Override
@@ -179,7 +195,8 @@ public class Elevator {
         for (Passenger currentPassenger : passengerList) {
             output += System.getProperty("line.separator");
             output += "\tPassenger going to floor "
-                    + (currentPassenger.getDestinationFloor().getFloorNumber() + 1);
+                    + (currentPassenger.getDestinationFloor().getFloorNumber()
+                            + 1);
         }
 
         output += System.getProperty("line.separator");
@@ -195,7 +212,7 @@ public class Elevator {
      * When the elevator reaches a floor which one or more passengers had
      * indicated was their destination, the passenger count decrements and the
      * passengers are removed. The status is then printed out to the console.
-     * 
+     *
      */
     private void stop() {
         System.out.println("Stopping on floor " + (currentFloor + 1));
@@ -211,7 +228,7 @@ public class Elevator {
 
     /**
      * Any passengers that are to get off at this floor are unloaded.
-     * 
+     *
      * @return The number of passengers who disembarked on to the floor.
      */
     public final ArrayList<Passenger> unloadPassengers() {
@@ -219,7 +236,8 @@ public class Elevator {
         ArrayList<Passenger> disembarkingList = new ArrayList<Passenger>();
 
         for (Passenger currentPassenger : passengerList) {
-            if (currentPassenger.getDestinationFloor().getFloorNumber() == currentFloor) {
+            if (currentPassenger.getDestinationFloor().getFloorNumber()
+                    == currentFloor) {
                 disembarkingList.add(currentPassenger);
             }
         }
@@ -232,11 +250,9 @@ public class Elevator {
     /**
      * Moves the elevator in the direction it is currently going. If it hits the
      * top or bottom floor it reverses direction.
-     * 
-     * @param floorNumber
-     *            The floor the passenger is boarding from.
-     * @throws ElevatorFullException
-     *             thrown when elevator hits capacity.
+     *
+     * @param newPassenger A Passenger that is attempting to board the elevator.
+     * @throws ElevatorFullException thrown when elevator hits capacity.
      */
     public final void boardPassenger(final Passenger newPassenger)
             throws ElevatorFullException {
@@ -247,14 +263,19 @@ public class Elevator {
         passengerList.add(newPassenger);
     }
 
-    public Direction getDirection() {
+    /**
+     * Let the floor now the direction the elevator is currently moving in.
+     *
+     * @return The current direction the Elevator is moving in.
+     */
+    public final Direction getDirection() {
         return direction;
     }
 
     /**
      * Add three passengers and run the elevator up and down the building to
      * ensure the passengers get off correctly.
-     * 
+     *
      * @param args
      *            Arguments passed into the application.
      */
