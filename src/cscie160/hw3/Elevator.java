@@ -65,19 +65,21 @@ public class Elevator {
              * Generate a Passenger going to a random floor above floor i and
              * add the passenger to a collection.
              */
-            buildingsFloor[i].setPassengersUp(generatePassengers(i, TOP_FLOOR));
+            buildingsFloor[i].setPassengersUp(generatePassengers(i, i, TOP_FLOOR));
 
             /**
              * Generate a Passenger going to a random floor below floor i and
              * add the passenger to a collection.
              */
-            buildingsFloor[i].setPassengersDown(generatePassengers(0, i));
+            buildingsFloor[i].setPassengersDown(generatePassengers(i, 0, i));
         }
     }
 
     /**
      * Generate a random number of Passengers between two floors.
      *
+     * @param currentFloorNumber
+     *            The floor the passengers will initialize on.
      * @param startFloorNumber
      *            The bottom floor number to generate from.
      * @param endFloorNumber
@@ -85,6 +87,7 @@ public class Elevator {
      * @return A list of passengers with start and end floors.
      */
     private ArrayList<Passenger> generatePassengers(
+            final int currentFloorNumber,
             final int startFloorNumber,
             final int endFloorNumber) {
         ArrayList<Passenger> passengersList = new ArrayList<Passenger>();
@@ -100,7 +103,7 @@ public class Elevator {
             int passengerCount = new Random().nextInt(MAX_GEN_PASSENGERS);
             for (int i = 0; i < passengerCount; i++) {
                 Passenger currentPassenger = new Passenger(
-                        buildingsFloor[startFloorNumber],
+                        buildingsFloor[currentFloorNumber],
                         buildingsFloor[destinationFloorNumber]);
                 passengersList.add(currentPassenger);
             }
@@ -131,7 +134,6 @@ public class Elevator {
      */
     public final void unregisterRequest(final int floorNumber) {
         if ((floorNumber >= 0) && (floorNumber <= TOP_FLOOR)) {
-            System.out.println("Changing flag to false");
             floorRegistry[floorNumber] = false;
         }
     }
@@ -201,9 +203,7 @@ public class Elevator {
 
         for (Passenger currentPassenger : passengerList) {
             output += System.getProperty("line.separator");
-            output += "\tPassenger going to floor "
-                    + (currentPassenger.getDestinationFloor().getFloorNumber()
-                            + 1);
+            output += "\t " + currentPassenger;
         }
 
         output += System.getProperty("line.separator");

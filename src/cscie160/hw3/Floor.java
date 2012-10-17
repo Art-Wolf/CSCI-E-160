@@ -70,7 +70,6 @@ public class Floor {
          * unregister the request with the Elevator.
          */
         if ((passengersUp.size() + passengersDown.size()) == 0) {
-            System.out.println("About to unregister floor with elevator.");
             myElevator.unregisterRequest(this.floorNumber);
         }
     }

@@ -21,4 +21,12 @@ public interface Person {
      * @param currentFloor the currentFloor to set
      */
     void setCurrentFloor(Floor currentFloor);
+
+    /**
+     * Print out the person's status.
+     *
+     * @return Status.
+     */
+    @Override
+    String toString();
 }

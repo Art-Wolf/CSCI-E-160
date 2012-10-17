@@ -4,6 +4,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import cscie160.hw3.Elevator;
+import cscie160.hw3.ElevatorFullException;
+import cscie160.hw3.Floor;
+import cscie160.hw3.Passenger;
 
 /**
  * Java Unit Test for the Elevator object.
@@ -32,7 +35,7 @@ public class ElevatorTest {
                 .substring(PASS_COUNT_INDEX_START, PASS_COUNT_INDEX_END));
 
         /** We expect at least one passenger to have been generated. */
-        if (currentPassengers == 0) {
+        if (currentPassengers != 0) {
             assertTrue(false);
         }
     }
@@ -70,11 +73,14 @@ public class ElevatorTest {
                 .substring(PASS_COUNT_INDEX_START, PASS_COUNT_INDEX_END));
 
         /** Add a passenger, fail if an exception is thrown. */
-//        try {
-//            myElevator.boardPassenger(2);
-//        } catch (ElevatorFullException excep) {
-//            assertTrue(false);
-//        }
+        Floor testFloor = new Floor(1, myElevator);
+        Floor testFloor2 = new Floor(2, myElevator);
+        Passenger testPassenger = new Passenger(testFloor, testFloor2);
+        try {
+            myElevator.boardPassenger(testPassenger);
+        } catch (ElevatorFullException excep) {
+            assertTrue(false);
+        }
 
         /** Confirm the status includes our new passenger. */
         if (myElevator.toString()
@@ -94,23 +100,37 @@ public class ElevatorTest {
 
         Elevator myElevator = new Elevator();
         boolean testSuccess = false;
-
+        Floor testFloor = new Floor(1, myElevator);
+        Floor testFloor2 = new Floor(2, myElevator);
+        Passenger testPassenger1 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger2 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger3 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger4 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger5 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger6 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger7 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger8 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger9 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger10 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger11 = new Passenger(testFloor, testFloor2);
+        Passenger testPassenger12 = new Passenger(testFloor, testFloor2);
         /** Add 11 passengers, fail if an exception is not thrown. */
-//        try {
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//            myElevator.boardPassenger(2);
-//        } catch (ElevatorFullException excep) {
-//            testSuccess = true;
-//        }
+        try {
+            myElevator.boardPassenger(testPassenger1);
+            myElevator.boardPassenger(testPassenger2);
+            myElevator.boardPassenger(testPassenger3);
+            myElevator.boardPassenger(testPassenger4);
+            myElevator.boardPassenger(testPassenger5);
+            myElevator.boardPassenger(testPassenger6);
+            myElevator.boardPassenger(testPassenger7);
+            myElevator.boardPassenger(testPassenger8);
+            myElevator.boardPassenger(testPassenger9);
+            myElevator.boardPassenger(testPassenger10);
+            myElevator.boardPassenger(testPassenger11);
+            myElevator.boardPassenger(testPassenger12);
+        } catch (ElevatorFullException excep) {
+            testSuccess = true;
+        }
 
         if (!testSuccess) {
             assertTrue(false);
@@ -135,11 +155,14 @@ public class ElevatorTest {
          * Add a passenger destined for the second floor, index 1.
          * fail if an exception is thrown.
          */
-//        try {
-//            myElevator.boardPassenger(1);
-//        } catch (ElevatorFullException excep) {
-//            assertTrue(false);
-//        }
+        Floor testFloor = new Floor(1, myElevator);
+        Floor testFloor2 = new Floor(2, myElevator);
+        Passenger testPassenger = new Passenger(testFloor, testFloor2);
+        try {
+            myElevator.boardPassenger(testPassenger);
+        } catch (ElevatorFullException excep) {
+            assertTrue(false);
+        }
 
         myElevator.move();
 

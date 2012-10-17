@@ -42,4 +42,18 @@ public abstract class Resident implements Person {
         this.currentFloor = currentFloor;
     }
 
+    /**
+     * Print out the Resident's current floor.
+     *
+     * @return Current status of the resident.
+     */
+    @Override
+    public String toString() {
+
+        String output = "Passenger from floor: "
+                + (currentFloor.getFloorNumber() + 1);
+
+        return output;
+    }
+
 }

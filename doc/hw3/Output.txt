@@ -1,24 +1,30 @@
 Buildfile: /Users/johndoyle/Sites/CSCI-E-160/build.xml
 
 clean:
+   [delete] Deleting directory /Users/johndoyle/Sites/CSCI-E-160/build
+   [delete] Deleting directory /Users/johndoyle/Sites/CSCI-E-160/api
+   [delete] Deleting directory /Users/johndoyle/Sites/CSCI-E-160/test
 
 compile:
     [mkdir] Created dir: /Users/johndoyle/Sites/CSCI-E-160/build/classes
-    [javac] Compiling 14 source files to /Users/johndoyle/Sites/CSCI-E-160/build/classes
+    [javac] Compiling 19 source files to /Users/johndoyle/Sites/CSCI-E-160/build/classes
     [javac] Creating empty /Users/johndoyle/Sites/CSCI-E-160/build/classes/cscie160/hw3/package-info.class
     [javac] Creating empty /Users/johndoyle/Sites/CSCI-E-160/build/classes/cscie160/hw2/package-info.class
+    [javac] Creating empty /Users/johndoyle/Sites/CSCI-E-160/build/classes/cscie160/hw3/test/package-info.class
     [javac] Creating empty /Users/johndoyle/Sites/CSCI-E-160/build/classes/cscie160/hw1/package-info.class
 
 checkstyle:
-[checkstyle] Running Checkstyle 5.6 on 14 files
+[checkstyle] Running Checkstyle 5.6 on 19 files
      [echo] Checkstyle done without error
 
 test:
     [mkdir] Created dir: /Users/johndoyle/Sites/CSCI-E-160/test
     [junit] Running cscie160.hw2.ElevatorTest
-    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.086 sec
-    [junit] Running cscie160.hw3.ElevatorTest
-    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.085 sec
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.055 sec
+    [junit] Running cscie160.hw3.test.ElevatorTest
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.057 sec
+    [junit] Running cscie160.hw3.test.PassengerTest
+    [junit] Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 0.053 sec
 
 doc:
   [javadoc] Generating Javadoc
@@ -27,6 +33,7 @@ doc:
   [javadoc] Loading source files for package cscie160.hw1...
   [javadoc] Loading source files for package cscie160.hw2...
   [javadoc] Loading source files for package cscie160.hw3...
+  [javadoc] Loading source files for package cscie160.hw3.test...
   [javadoc] Constructing Javadoc information...
   [javadoc] Standard Doclet version 1.6.0_35
   [javadoc] Building tree for all the packages and classes...
@@ -38,206 +45,90 @@ jar:
       [jar] Building jar: /Users/johndoyle/Sites/CSCI-E-160/build/jar/hw3.jar
 
 run:
-     [java] Currently 10 passengers on board
+     [java] Currently 0 passengers on board
+     [java] Current Floor 1
+     [java] Direction: UP
+     [java] 
+     [java] Stopping on floor 1
+     [java] Currently 4 passengers on board
+     [java] 	 Passenger from floor: 1 destined for: 4
+     [java] 	 Passenger from floor: 1 destined for: 5
+     [java] 	 Passenger from floor: 1 destined for: 6
+     [java] 	 Passenger from floor: 1 destined for: 7
      [java] Current Floor 1
      [java] Direction: UP
      [java] 
      [java] Stopping on floor 2
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 1 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	1 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
+     [java] Currently 7 passengers on board
+     [java] 	 Passenger from floor: 1 destined for: 4
+     [java] 	 Passenger from floor: 1 destined for: 5
+     [java] 	 Passenger from floor: 1 destined for: 6
+     [java] 	 Passenger from floor: 1 destined for: 7
+     [java] 	 Passenger from floor: 2 destined for: 5
+     [java] 	 Passenger from floor: 2 destined for: 6
+     [java] 	 Passenger from floor: 2 destined for: 7
      [java] Current Floor 2
      [java] Direction: UP
      [java] 
-     [java] Stopping on floor 3
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 8 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	8 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 3
-     [java] Direction: UP
-     [java] 
      [java] Stopping on floor 4
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 9 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	9 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
+     [java] Currently 8 passengers on board
+     [java] 	 Passenger from floor: 1 destined for: 5
+     [java] 	 Passenger from floor: 1 destined for: 6
+     [java] 	 Passenger from floor: 1 destined for: 7
+     [java] 	 Passenger from floor: 2 destined for: 5
+     [java] 	 Passenger from floor: 2 destined for: 6
+     [java] 	 Passenger from floor: 2 destined for: 7
+     [java] 	 Passenger from floor: 4 destined for: 6
+     [java] 	 Passenger from floor: 4 destined for: 7
      [java] Current Floor 4
      [java] Direction: UP
      [java] 
      [java] Stopping on floor 5
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 4 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	4 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
+     [java] Currently 7 passengers on board
+     [java] 	 Passenger from floor: 1 destined for: 6
+     [java] 	 Passenger from floor: 1 destined for: 7
+     [java] 	 Passenger from floor: 2 destined for: 6
+     [java] 	 Passenger from floor: 2 destined for: 7
+     [java] 	 Passenger from floor: 4 destined for: 6
+     [java] 	 Passenger from floor: 4 destined for: 7
+     [java] 	 Passenger from floor: 5 destined for: 6
      [java] Current Floor 5
      [java] Direction: UP
      [java] 
      [java] Stopping on floor 6
-     [java] 	3 passengers got off the elevator.
-     [java] 	Currently 5 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	2 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
+     [java] Currently 4 passengers on board
+     [java] 	 Passenger from floor: 1 destined for: 7
+     [java] 	 Passenger from floor: 2 destined for: 7
+     [java] 	 Passenger from floor: 4 destined for: 7
+     [java] 	 Passenger from floor: 6 destined for: 7
      [java] Current Floor 6
      [java] Direction: UP
      [java] 
      [java] Stopping on floor 7
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 7 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	7 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
+     [java] Currently 0 passengers on board
      [java] Current Floor 7
      [java] Direction: UP
      [java] 
      [java] Stopping on floor 6
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 2 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	2 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 6
-     [java] Direction: DOWN
-     [java] 
-     [java] Stopping on floor 5
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 4 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	4 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 5
-     [java] Direction: DOWN
-     [java] 
-     [java] Stopping on floor 4
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 9 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	9 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 4
-     [java] Direction: DOWN
-     [java] 
-     [java] Stopping on floor 3
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 8 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	8 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 3
-     [java] Direction: DOWN
-     [java] 
-     [java] Stopping on floor 2
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 1 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	1 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 2
-     [java] Direction: DOWN
-     [java] 
-     [java] Stopping on floor 1
-     [java] 	10 passengers got off the elevator.
-     [java] 	Currently 0 passengers on the floor.
-     [java] 	0 passengers remaining on the floor.
-     [java] Currently 0 passengers on board
-     [java] Current Floor 1
-     [java] Direction: DOWN
-     [java] 
-     [java] Stopping on floor 2
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 1 passengers on the floor.
-     [java] 	0 passengers remaining on the floor.
      [java] Currently 1 passengers on board
-     [java] Current Floor 2
-     [java] Direction: UP
+     [java] 	 Passenger from floor: 6 destined for: 3
+     [java] Current Floor 6
+     [java] Direction: DOWN
+     [java] 
+     [java] Stopping on floor 5
+     [java] Currently 2 passengers on board
+     [java] 	 Passenger from floor: 6 destined for: 3
+     [java] 	 Passenger from floor: 5 destined for: 3
+     [java] Current Floor 5
+     [java] Direction: DOWN
      [java] 
      [java] Stopping on floor 3
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 8 passengers on the floor.
-     [java] 	0 passengers remaining on the floor.
-     [java] Currently 9 passengers on board
-     [java] Current Floor 3
-     [java] Direction: UP
-     [java] 
-     [java] Stopping on floor 4
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 9 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	8 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 4
-     [java] Direction: UP
-     [java] 
-     [java] Stopping on floor 5
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 4 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	4 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 5
-     [java] Direction: UP
-     [java] 
-     [java] Stopping on floor 6
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 2 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	2 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 6
-     [java] Direction: UP
-     [java] 
-     [java] Stopping on floor 7
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 7 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	7 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 7
-     [java] Direction: UP
-     [java] 
-     [java] Stopping on floor 6
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 2 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	2 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 6
-     [java] Direction: DOWN
-     [java] 
-     [java] Stopping on floor 5
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 4 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	4 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 5
-     [java] Direction: DOWN
-     [java] 
-     [java] Stopping on floor 4
-     [java] 	0 passengers got off the elevator.
-     [java] 	Currently 8 passengers on the floor.
-     [java] 	Elevator Full - stopped loading passengers;
-     [java] 	8 passengers remaining on the floor.
-     [java] Currently 10 passengers on board
-     [java] Current Floor 4
-     [java] Direction: DOWN
-     [java] 
-     [java] Stopping on floor 1
-     [java] 	10 passengers got off the elevator.
-     [java] 	Currently 0 passengers on the floor.
-     [java] 	0 passengers remaining on the floor.
      [java] Currently 0 passengers on board
-     [java] Current Floor 1
+     [java] Current Floor 3
      [java] Direction: DOWN
      [java] 
 
 main:
 
 BUILD SUCCESSFUL
-Total time: 7 seconds
+Total time: 8 seconds

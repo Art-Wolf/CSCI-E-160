@@ -31,4 +31,19 @@ public class Passenger extends Resident {
     public final Floor getDestinationFloor() {
         return destinationFloor;
     }
+
+    /**
+     * Print out the Passenger's current floor.
+     *
+     * @return Current status of the passenger.
+     */
+    @Override
+    public final String toString() {
+
+        String output = super.toString();
+
+        output += " destined for: " + (destinationFloor.getFloorNumber() + 1);
+
+        return output;
+    }
 }
