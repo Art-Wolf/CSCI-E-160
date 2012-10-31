@@ -1,0 +1,87 @@
+Buildfile: /Users/johndoyle/Sites/CSCI-E-160/build.xml
+
+clean:
+   [delete] Deleting directory /Users/johndoyle/Sites/CSCI-E-160/build
+   [delete] Deleting directory /Users/johndoyle/Sites/CSCI-E-160/api
+   [delete] Deleting directory /Users/johndoyle/Sites/CSCI-E-160/test
+
+compile:
+    [mkdir] Created dir: /Users/johndoyle/Sites/CSCI-E-160/build/classes
+    [javac] Compiling 38 source files to /Users/johndoyle/Sites/CSCI-E-160/build/classes
+    [javac] Creating empty /Users/johndoyle/Sites/CSCI-E-160/build/classes/cscie160/hw4/package-info.class
+    [javac] Creating empty /Users/johndoyle/Sites/CSCI-E-160/build/classes/cscie160/hw3/package-info.class
+    [javac] Creating empty /Users/johndoyle/Sites/CSCI-E-160/build/classes/cscie160/hw2/package-info.class
+    [javac] Creating empty /Users/johndoyle/Sites/CSCI-E-160/build/classes/cscie160/hw3/test/package-info.class
+    [javac] Creating empty /Users/johndoyle/Sites/CSCI-E-160/build/classes/cscie160/hw1/package-info.class
+
+checkstyle:
+[checkstyle] Running Checkstyle 5.6 on 38 files
+     [echo] Checkstyle done without error
+
+test:
+    [mkdir] Created dir: /Users/johndoyle/Sites/CSCI-E-160/test
+    [junit] Running cscie160.hw2.ElevatorTest
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.059 sec
+    [junit] Running cscie160.hw3.test.ElevatorTest
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.055 sec
+    [junit] Running cscie160.hw3.test.PassengerTest
+    [junit] Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 0.056 sec
+    [junit] Running cscie160.hw4.ATMImplementionTest
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.051 sec
+    [junit] Running cscie160.hw4.ATMProxyTest
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.074 sec
+    [junit] Running cscie160.hw4.AccountTest
+    [junit] Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 0.051 sec
+    [junit] Running cscie160.lecture7.EchoClientTest
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 0.074 sec
+    [junit] Running cscie160.lecture7.EchoServerTest
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.082 sec
+
+doc:
+  [javadoc] Generating Javadoc
+  [javadoc] Javadoc execution
+  [javadoc] Creating destination directory: "/Users/johndoyle/Sites/CSCI-E-160/api/"
+  [javadoc] Loading source files for package cscie160.hw1...
+  [javadoc] Loading source files for package cscie160.hw2...
+  [javadoc] Loading source files for package cscie160.hw3...
+  [javadoc] Loading source files for package cscie160.hw3.test...
+  [javadoc] Loading source files for package cscie160.hw4...
+  [javadoc] Loading source files for package cscie160.lecture7...
+  [javadoc] Constructing Javadoc information...
+  [javadoc] Standard Doclet version 1.6.0_37
+  [javadoc] Building tree for all the packages and classes...
+  [javadoc] /Users/johndoyle/Sites/CSCI-E-160/src/cscie160/lecture7/EchoClient.java:57: warning - @return tag has no arguments.
+  [javadoc] Building index for all the packages and classes...
+  [javadoc] Building index for all classes...
+  [javadoc] Generating /Users/johndoyle/Sites/CSCI-E-160/api/stylesheet.css...
+  [javadoc] 1 warning
+
+jar:
+    [mkdir] Created dir: /Users/johndoyle/Sites/CSCI-E-160/build/jar
+      [jar] Building jar: /Users/johndoyle/Sites/CSCI-E-160/build/jar/hw4.jar
+
+main:
+
+BUILD SUCCESSFUL
+Total time: 12 seconds
+Accepting clients now
+ATMProxy writing command to server: BALANCE
+Client acquired on port #7777, reading from socket
+Server returned: 0.0
+Balance: 0.0
+ Depositing: 1000
+ATMProxy writing command to server: DEPOSIT
+ATMProxy writing command to server: BALANCE
+Server returned: 0.0
+Balance: 0.0
+ Withdrawing: 250
+ATMProxy writing command to server: WITHDRAW
+ATMProxy writing command to server: BALANCE
+Server returned: 0.0
+Balance: 0.0
+ Withdrawing: 750
+ATMProxy writing command to server: WITHDRAW
+ATMProxy writing command to server: BALANCE
+Server returned: 0.0
+Balance: 0.0
+Client serviced

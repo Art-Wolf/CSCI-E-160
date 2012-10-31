@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class SocketTest {
+public class SocketTime {
 
 	public static void main(String [] args) {
 		Socket socket = null;

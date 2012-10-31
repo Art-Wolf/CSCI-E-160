@@ -1,0 +1,51 @@
+   Homework 4
+   John Doyle
+   10/31/2012
+
+Overview
+Purpose
+   Complete the server implementation of an ATM system.
+
+Brief description
+   There is a single account that is initialized with a zeo balance. The server decodes the commands sent via the Client
+   and calls the appropriate methods in the ATMImplementation.
+
+   There are several exceptions that can be thrown
+      - If a negative amount is recieved for a deposit.
+      - If a withdrawal would result in a negative balance.
+
+Goals
+Primary Requirements:
+   1. Create an Account class.
+   2. Create a server side ATM implementation.
+   3. Unit test the stipulated classes.
+Secondary Requirements:
+   1. Generate the jar via ant.
+   2. Incorporate JUNIT into ant.
+
+See Also
+   Assignment URL : http://courses.dce.harvard.edu/~cscie160/hw4-06.htm
+   Coding Style : http://java.net/projects/woodstock/sources/svn/content/trunk/webui/tools/checkstyle/sun_checks.xml
+
+Assumptions
+   Do not alter the client or server code.
+
+Risks
+   Can find no instance why the balance might throw an ATM Exception.
+
+New procedure/functionality
+   Account.java
+	Account()
+	Account(initialBalance)
+	getBalance()
+	setBalance(balance)
+   ATMImplementation.java
+	ATMImplementation()
+	ATMImplementation(Account)
+	deposit(amount)
+	withdraw(amount)
+	getBalance()
+
+How to run the assignment
+   java -classpath hw4.jar cscie160.hw4.Server 7777
+   java -classpath hw4.jar cscie160.hw4.Client localhost 7777
