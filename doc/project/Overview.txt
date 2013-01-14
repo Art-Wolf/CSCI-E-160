@@ -1,0 +1,40 @@
+   Project
+   John Doyle
+   12/21/2012
+
+Overview
+Purpose
+   Implement a complex distributed ATM system that connects with a Bank system and a Security system. The Client will connect to the ATM which will autenticate and confirm the
+   transactions are authorized with the Security system before working with the Bank system to modify the account balances.
+
+Brief description
+   The client connects via the name service to the ATM. It passes an AccountInfo data packet, containing the account number and pin code, with any transaction it attempts to make.
+
+   The ATM recieves the request and it notifies all listeners about the pending transaction.
+
+   The ATM confirms that the account is authenticated and that the transaction is autohorized via the Security system which is connected to via the name service.
+
+   The ATM connects via the name service to the Bank system. It performs the requested actions on the accounts and passes any exceptions back to the client.
+
+Goals
+Primary Requirements:
+   1. Have the systems connect to each other via the RMI name service.
+   2. Move the accounts to the Bank system.
+   3. Have the Security system made the pin and commands.
+   4. Implement a transfer functionality.
+   5. Have a cash dispense limit.
+
+See Also
+   Assignment URL : http://courses.dce.harvard.edu/~cscie160/project.htm
+   Coding Style : http://java.net/projects/woodstock/sources/svn/content/trunk/webui/tools/checkstyle/sun_checks.xml
+
+Assumptions
+   Do not alter the client tests.
+   Deposits do not increase the cash available at the ATM - possibly cheques being deposited also.
+
+How to run the assignment
+   rmiregistry
+   java -classpath project.jar cscie160.project.BankServer
+   java -classpath project.jar cscie160.project.ATMServer
+   java -classpath project.jar cscie160.project.Client
+

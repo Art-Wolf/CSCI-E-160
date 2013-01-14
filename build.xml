@@ -1,4 +1,4 @@
-<project name="hw4" basedir="." default="main" xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
+<project name="project" basedir="." default="main" xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
 
     <property name="src.dir"     value="src"/>
     <property name="build.dir"   value="build"/>
@@ -56,12 +56,12 @@
 	</javac>
     </target>
 
-    <target name="jar" depends="compile" description="Generate jar file.">
+    <target name="jar" description="Generate jar file.">
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
-            <fileset dir="${src.dir}" includes="**/*.java"/>
+            <fileset dir="${src.dir}" includes="cscie160/project/*.java"/>
             <fileset dir="." includes="api/*"/>
-	    <fileset dir="." includes="doc/hw4/*"/>
+	    <fileset dir="." includes="doc/project/*"/>
         </jar>
     </target>
 
@@ -90,6 +90,6 @@
 
     <target name="clean-build" depends="clean,test"/>
 
-    <target name="main" depends="clean,compile,checkstyle,test,doc,jar"/>
+    <target name="main" depends="clean,compile,doc,jar"/>
 
 </project>

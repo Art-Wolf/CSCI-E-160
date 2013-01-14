@@ -1,0 +1,25 @@
+   Homework 6
+   John Doyle
+   12/21/2012
+
+Overview
+Purpose
+   Convert Homework 4 to use Threads.
+
+Brief description
+   Allow five ATM threads to run concurrently. Clients can connect and the sever will hand off the connection to a new thread which will execute its command.
+
+Goals
+Primary Requirements:
+   1. Allow the sever to pass connections to a tread.
+
+See Also
+   Assignment URL : http://courses.dce.harvard.edu/~cscie160/hw6-06.htm
+   Coding Style : http://java.net/projects/woodstock/sources/svn/content/trunk/webui/tools/checkstyle/sun_checks.xml
+
+Assumptions
+   Do not alter the client.
+
+How to run the assignment
+   java -classpath hw6.jar cscie160.hw6.Server 7777
+   java -classpath hw6.jar cscie160.hw6.Client localhost 7777

@@ -1,0 +1,37 @@
+Johns-MacBook-Air-2:jar johndoyle$ java -classpath project.jar cscie160.project.ATMServer
+ATM connected to name service for the Bank.
+Got the Bank implementation.
+ATM connected to name service for the Security.
+Got the Security implementation.
+
+Johns-MacBook-Air-2:jar johndoyle$ java -classpath project.jar cscie160.project.Client
+Going to retrieve the ATM from RMI name service.
+Connected to name service.
+Got ATM implementation.
+Transaction Notification [2013-01-01 20:01:52.11] 1 : BALANCE
+Balance(0000001): 0.0
+Transaction Notification [2013-01-01 20:01:52.128] 2 : BALANCE
+Balance(0000002): 100.0
+Transaction Notification [2013-01-01 20:01:52.132] 3 : BALANCE
+Balance(0000003): 500.0
+Transaction Notification [2013-01-01 20:01:52.137] 1 : BALANCE
+Failed as expected: cscie160.project.SecurityException: Account is not authenticated.
+Transaction Notification [2013-01-01 20:01:52.149] 2 : WITHDRAW
+Failed as expected: cscie160.project.SecurityException: Account is not authorized to perform this action.
+Transaction Notification [2013-01-01 20:01:52.154] 1 : WITHDRAW
+Failed as expected: cscie160.project.ATMException: Account contains insufficient funds.
+Transaction Notification [2013-01-01 20:01:52.163] 1 : DEPOSIT
+Transaction Notification [2013-01-01 20:01:52.168] 2 : DEPOSIT
+Transaction Notification [2013-01-01 20:01:52.173] 1 : WITHDRAW
+Transaction Notification [2013-01-01 20:01:52.178] 3 : WITHDRAW
+Transaction Notification [2013-01-01 20:01:52.188] 1 : WITHDRAW
+Failed as expected: cscie160.project.ATMException: ATM contains insufficient funds.
+Transaction Notification [2013-01-01 20:01:52.194] 1 : WITHDRAW
+Transaction Notification [2013-01-01 20:01:52.198] 2 : DEPOSIT
+Transaction Notification [2013-01-01 20:01:52.203] 1 : BALANCE
+Balance(0000001): 300.0
+Transaction Notification [2013-01-01 20:01:52.207] 2 : BALANCE
+Balance(0000002): 300.0
+Transaction Notification [2013-01-01 20:01:52.212] 3 : BALANCE
+Balance(0000003): 200.0
+

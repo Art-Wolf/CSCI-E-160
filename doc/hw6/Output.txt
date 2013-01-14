@@ -1,0 +1,34 @@
+Starting server socket on port 7777...
+Running request in thread: Thread-0
+Running request in thread: Thread-1
+Running request in thread: Thread-2
+Listening for a client request...
+Running request in thread: Thread-3
+Running request in thread: Thread-4
+Client acquired on port #7777, reading from socket
+Running request in thread: Thread-0
+Running request in thread: Thread-1
+Running request in thread: Thread-2
+Running request in thread: Thread-3
+Running request in thread: Thread-4
+Running request in thread: Thread-0
+Running request in thread: Thread-1
+ATMProxy writing command to server: BALANCE
+Client acquired on port #7777, reading from socket
+Server returned: 0.0
+Balance: 0.0
+ Depositing: 1000
+ATMProxy writing command to server: DEPOSIT
+ATMProxy writing command to server: BALANCE
+Server returned: 0.0
+Balance: 0.0
+ Withdrawing: 250
+ATMProxy writing command to server: WITHDRAW
+ATMProxy writing command to server: BALANCE
+Server returned: 0.0
+Balance: 0.0
+ Withdrawing: 750
+ATMProxy writing command to server: WITHDRAW
+ATMProxy writing command to server: BALANCE
+Server returned: 0.0
+Balance: 0.0
